@@ -26,6 +26,7 @@ class ScrollableColumn extends StatelessWidget {
     this.textBaseline,
     this.physics,
     this.padding,
+    this.maxWidth,
   });
 
   /// The children of the underlying [Column].
@@ -55,6 +56,9 @@ class ScrollableColumn extends StatelessWidget {
   /// The padding of the underlying [Column].
   final EdgeInsets? padding;
 
+  /// The maximum width of the underlying [Column].
+  final double? maxWidth;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -63,7 +67,7 @@ class ScrollableColumn extends StatelessWidget {
           physics: physics,
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minWidth: constraints.maxWidth,
+              maxWidth: maxWidth ?? constraints.maxWidth,
               minHeight: constraints.maxHeight,
             ),
             child: IntrinsicHeight(
