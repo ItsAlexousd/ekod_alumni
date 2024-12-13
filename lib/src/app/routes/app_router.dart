@@ -1,4 +1,5 @@
 import 'package:ekod_alumni/src/app/app.dart';
+import 'package:ekod_alumni/src/app/routes/go_router_refresh_stream.dart';
 import 'package:ekod_alumni/src/features/authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +27,7 @@ GoRouter goRouter(Ref ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return GoRouter(
     initialLocation: '/',
+    debugLogDiagnostics: true,
     // * Redirect logic based on the user authentication state
     redirect: (_, state) {
       final path = state.uri.path;
@@ -38,7 +40,7 @@ GoRouter goRouter(Ref ref) {
 
       return null;
     },
-    // refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
         path: '/',
