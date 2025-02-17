@@ -32,14 +32,14 @@ class AuthRepository {
   /// If successful, it also signs the user in into the app and updates
   /// [authStateChanges] stream listener.
   Future<void> signInWithEmailAndPassword(String email, String password) {
-    throw UnimplementedError();
+    return _auth.signInWithEmailAndPassword(email: email, password: password);
   }
 
   /// Signs out the current user.
   ///
   /// If successful, it also updates [authStateChanges] stream listener.
   Future<void> signOut() {
-    throw UnimplementedError();
+    return _auth.signOut();
   }
 }
 
